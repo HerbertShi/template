@@ -4,16 +4,20 @@ requirejs.config({
         'jquery': 'jquery-1.11.1.min',
         'css': 'css.min',
         'swipe': 'jquery.touchSwipe.min',
+        'jquery-ui':'jquery-ui/jquery-ui-1.10.4.custom.min',
         'config': 'config'
     },
     shim: {
         'swipe': {
             deps: ['jquery']
+        },
+        'jquery-ui':{
+            deps: ['jquery']
         }
     }
 });
 
-requirejs(['jquery', 'config', 'swipe'], function($, Config) {
+requirejs(['jquery', 'config', 'swipe','jquery-ui'], function($, Config) {
     var currentIndex = 0;
     $(function() {
         $(Config.page).map(function(i) {
@@ -55,9 +59,8 @@ requirejs(['jquery', 'config', 'swipe'], function($, Config) {
 
                 comeAnimate = function() {
                     newObj.animate({"top": "-5%"}, 1000, function() {
-                        $(this).animate({"top": "0%" }, 500, function() {
-                            data.afterLoad();
-                        });
+                        data.afterLoad();
+                        $(this).animate({"top": "0%" }, 500);
                     });
                 }
             }else{
@@ -79,9 +82,8 @@ requirejs(['jquery', 'config', 'swipe'], function($, Config) {
 
                 comeAnimate = function() {
                     newObj.animate({"top": "5%"}, 1000, function() {
-                        $(this).animate({"top": "0%"}, 500, function() {
-                            data.afterLoad();
-                        });
+                        data.afterLoad();
+                        $(this).animate({"top": "0%"}, 500);
                     });
                 }
             }else{
@@ -91,6 +93,7 @@ requirejs(['jquery', 'config', 'swipe'], function($, Config) {
                 currentIndex++;
             }
         }else if(direction == "first"){
+            data.beforeLoad();
             newObj.load(data.url,function(){
                 data.afterLoad();
             });
