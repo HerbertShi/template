@@ -1,12 +1,14 @@
 define(function() {
-	var config = {
-		page:[{
-			name:"1",
-			url:"1.html",
-            beforeLoad:function(){
-                
+    var config = {
+        page: [{
+            name: "1",
+            url: "1.html",
+            beforeLoad: function() {
+                $("#aaa").css({
+                    "left": "-20%"
+                })
             },
-            afterLoad:function(){
+            afterLoad: function() {
                 $('#logo').animate({
                     r: 135
                 }, {
@@ -18,8 +20,10 @@ define(function() {
                         $(this).css('transform', 'rotate(' + now + 'deg)');
                     },
                     duration: 1200,
-                    complete  :function(){
-                        $(this).animate({r:-45},{
+                    complete: function() {
+                        $(this).animate({
+                            r: -45
+                        }, {
                             step: function(now, fx) {
                                 $(this).css('-webkit-transform', 'rotate(' + now + 'deg)');
                                 $(this).css('-moz-transform', 'rotate(' + now + 'deg)');
@@ -28,8 +32,10 @@ define(function() {
                                 $(this).css('transform', 'rotate(' + now + 'deg)');
                             },
                             duration: 1600,
-                            complete  :function(){
-                                $(this).animate({r:0},{
+                            complete: function() {
+                                $(this).animate({
+                                    r: 0
+                                }, {
                                     step: function(now, fx) {
                                         $(this).css('-webkit-transform', 'rotate(' + now + 'deg)');
                                         $(this).css('-moz-transform', 'rotate(' + now + 'deg)');
@@ -38,33 +44,44 @@ define(function() {
                                         $(this).css('transform', 'rotate(' + now + 'deg)');
                                     },
                                     duration: 1200,
-                                    
+
                                 });
                             }
                         });
                     }
                 });
 
+                $("#aaa").animate({
+                    "left":"60%"
+                },1200,function(){
+                    $(this).animate({
+                        "left":"40%"
+                    },1600,function(){
+                        $(this).animate({
+                            "left": "50%"
+                        }, 1200)
+                    })
+                })
             }
-		},{
-            name:"2",
-            url:"2.html",
-            beforeLoad:function(){
+        }, {
+            name: "2",
+            url: "2.html",
+            beforeLoad: function() {
                 $("img");
             },
-            afterLoad:function(){
+            afterLoad: function() {
 
             }
-        },{
-            name:"3",
-            url:"3.html",
-            beforeLoad:function(){
-                
+        }, {
+            name: "3",
+            url: "3.html",
+            beforeLoad: function() {
+
             },
-            afterLoad:function(){
-                
+            afterLoad: function() {
+
             }
         }]
-	};
-	return config;
+    };
+    return config;
 });
