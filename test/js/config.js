@@ -45,12 +45,8 @@ define(function() {
                     "left": "60%"
                 }, 960, function() {
                     $(this).animate({
-                        "left": "40%"
-                    }, 1280, function() {
-                        $(this).animate({
-                            "left": "50%"
-                        }, 960)
-                    })
+                        "left": "50%"
+                    }, 1280);
                 });
 
                 $circle.children("img").animate({
@@ -66,7 +62,7 @@ define(function() {
                     duration: 960,
                     complete: function() {
                         $(this).animate({
-                            r: -45
+                            r: 0
                         }, {
                             step: function(now, fx) {
                                 $(this).css('-webkit-transform', 'rotate(' + now + 'deg)');
@@ -75,22 +71,7 @@ define(function() {
                                 $(this).css('-o-transform', 'rotate(' + now + 'deg)');
                                 $(this).css('transform', 'rotate(' + now + 'deg)');
                             },
-                            duration: 1280,
-                            complete: function() {
-                                $(this).animate({
-                                    r: 0
-                                }, {
-                                    step: function(now, fx) {
-                                        $(this).css('-webkit-transform', 'rotate(' + now + 'deg)');
-                                        $(this).css('-moz-transform', 'rotate(' + now + 'deg)');
-                                        $(this).css('-ms-transform', 'rotate(' + now + 'deg)');
-                                        $(this).css('-o-transform', 'rotate(' + now + 'deg)');
-                                        $(this).css('transform', 'rotate(' + now + 'deg)');
-                                    },
-                                    duration: 960
-
-                                });
-                            }
+                            duration: 1280
                         });
                     }
                 });
@@ -103,11 +84,11 @@ define(function() {
                     $(this).animate({
                         "left": "20%",
                         "opacity": "0.5"
-                    }, 1000, function() {
+                    }, 800, function() {
                         $(this).animate({
                             "left": "23%",
                             "opacity": "1"
-                        }, 1000);
+                        }, 500);
                     });
                 });
 
@@ -119,12 +100,12 @@ define(function() {
                     $(this).animate({
                         "right": "20%",
                         "opacity": "0.5"
-                    }, 1000, function() {
+                    }, 800, function() {
                         $(this).animate({
                             "right": "24%",
                             "opacity": "1"
-                        }, 1000, function() {
-                            $arrow.slideDown(500);
+                        }, 500, function() {
+                            $arrow.slideDown(1000);
                         });
                     });
                 });
@@ -176,51 +157,37 @@ define(function() {
 
                 $rp.slideDown(1500);
 
-                $p1.fadeIn(500, function() {
+                $p1.fadeIn(800, function() {
                     $p3.fadeIn(2000);
-                    $p2.fadeIn(1000, function() {
-                        $circle.fadeIn(2000);
-                        $circle.children("img").animate({
-                            r: 135
-                        }, {
-                            step: function(now, fx) {
-                                $(this).css('-webkit-transform', 'rotate(' + now + 'deg)');
-                                $(this).css('-moz-transform', 'rotate(' + now + 'deg)');
-                                $(this).css('-ms-transform', 'rotate(' + now + 'deg)');
-                                $(this).css('-o-transform', 'rotate(' + now + 'deg)');
-                                $(this).css('transform', 'rotate(' + now + 'deg)');
-                            },
-                            duration: 960,
-                            complete: function() {
-                                $(this).animate({
-                                    r: -45
-                                }, {
-                                    step: function(now, fx) {
-                                        $(this).css('-webkit-transform', 'rotate(' + now + 'deg)');
-                                        $(this).css('-moz-transform', 'rotate(' + now + 'deg)');
-                                        $(this).css('-ms-transform', 'rotate(' + now + 'deg)');
-                                        $(this).css('-o-transform', 'rotate(' + now + 'deg)');
-                                        $(this).css('transform', 'rotate(' + now + 'deg)');
-                                    },
-                                    duration: 1280,
-                                    complete: function() {
-                                        $arrow.slideDown(500);
-                                        $(this).animate({
-                                            r: 0
-                                        }, {
-                                            step: function(now, fx) {
-                                                $(this).css('-webkit-transform', 'rotate(' + now + 'deg)');
-                                                $(this).css('-moz-transform', 'rotate(' + now + 'deg)');
-                                                $(this).css('-ms-transform', 'rotate(' + now + 'deg)');
-                                                $(this).css('-o-transform', 'rotate(' + now + 'deg)');
-                                                $(this).css('transform', 'rotate(' + now + 'deg)');
-                                            },
-                                            duration: 960
-                                        });
-                                    }
-                                });
-                            }
-                        });
+                    $p2.fadeIn(1500);
+                    $circle.fadeIn(1500);
+
+                    $circle.children("img").animate({
+                        r: 135
+                    }, {
+                        step: function(now, fx) {
+                            $(this).css('-webkit-transform', 'rotate(' + now + 'deg)');
+                            $(this).css('-moz-transform', 'rotate(' + now + 'deg)');
+                            $(this).css('-ms-transform', 'rotate(' + now + 'deg)');
+                            $(this).css('-o-transform', 'rotate(' + now + 'deg)');
+                            $(this).css('transform', 'rotate(' + now + 'deg)');
+                        },
+                        duration: 800,
+                        complete: function() {
+                            $arrow.slideDown(1000);
+                            $(this).animate({
+                                r: 0
+                            }, {
+                                step: function(now, fx) {
+                                    $(this).css('-webkit-transform', 'rotate(' + now + 'deg)');
+                                    $(this).css('-moz-transform', 'rotate(' + now + 'deg)');
+                                    $(this).css('-ms-transform', 'rotate(' + now + 'deg)');
+                                    $(this).css('-o-transform', 'rotate(' + now + 'deg)');
+                                    $(this).css('transform', 'rotate(' + now + 'deg)');
+                                },
+                                duration: 1000
+                            });
+                        }
                     });
 
                 });
@@ -256,52 +223,37 @@ define(function() {
 
                 $rp.slideDown(1500);
                 
-                $p1.fadeIn(500, function() {
+                $p1.fadeIn(800, function() {
                     $p3.fadeIn(2000);
-                    $p2.fadeIn(1000, function() {
-                        $circle.fadeIn(2000);
-                        $circle.children("img").animate({
-                            r: 135
-                        }, {
-                            step: function(now, fx) {
-                                $(this).css('-webkit-transform', 'rotate(' + now + 'deg)');
-                                $(this).css('-moz-transform', 'rotate(' + now + 'deg)');
-                                $(this).css('-ms-transform', 'rotate(' + now + 'deg)');
-                                $(this).css('-o-transform', 'rotate(' + now + 'deg)');
-                                $(this).css('transform', 'rotate(' + now + 'deg)');
-                            },
-                            duration: 960,
-                            complete: function() {
-                                $arrow.slideDown(500);
+                    $p2.fadeIn(1500);
+                    $circle.fadeIn(1500);
 
-                                $(this).animate({
-                                    r: -45
-                                }, {
-                                    step: function(now, fx) {
-                                        $(this).css('-webkit-transform', 'rotate(' + now + 'deg)');
-                                        $(this).css('-moz-transform', 'rotate(' + now + 'deg)');
-                                        $(this).css('-ms-transform', 'rotate(' + now + 'deg)');
-                                        $(this).css('-o-transform', 'rotate(' + now + 'deg)');
-                                        $(this).css('transform', 'rotate(' + now + 'deg)');
-                                    },
-                                    duration: 1280,
-                                    complete: function() {
-                                        $(this).animate({
-                                            r: 0
-                                        }, {
-                                            step: function(now, fx) {
-                                                $(this).css('-webkit-transform', 'rotate(' + now + 'deg)');
-                                                $(this).css('-moz-transform', 'rotate(' + now + 'deg)');
-                                                $(this).css('-ms-transform', 'rotate(' + now + 'deg)');
-                                                $(this).css('-o-transform', 'rotate(' + now + 'deg)');
-                                                $(this).css('transform', 'rotate(' + now + 'deg)');
-                                            },
-                                            duration: 960
-                                        });
-                                    }
-                                });
-                            }
-                        });
+                    $circle.children("img").animate({
+                        r: 135
+                    }, {
+                        step: function(now, fx) {
+                            $(this).css('-webkit-transform', 'rotate(' + now + 'deg)');
+                            $(this).css('-moz-transform', 'rotate(' + now + 'deg)');
+                            $(this).css('-ms-transform', 'rotate(' + now + 'deg)');
+                            $(this).css('-o-transform', 'rotate(' + now + 'deg)');
+                            $(this).css('transform', 'rotate(' + now + 'deg)');
+                        },
+                        duration: 800,
+                        complete: function() {
+                            $arrow.slideDown(1000);
+                            $(this).animate({
+                                r: 0
+                            }, {
+                                step: function(now, fx) {
+                                    $(this).css('-webkit-transform', 'rotate(' + now + 'deg)');
+                                    $(this).css('-moz-transform', 'rotate(' + now + 'deg)');
+                                    $(this).css('-ms-transform', 'rotate(' + now + 'deg)');
+                                    $(this).css('-o-transform', 'rotate(' + now + 'deg)');
+                                    $(this).css('transform', 'rotate(' + now + 'deg)');
+                                },
+                                duration: 1000
+                            });
+                        }
                     });
 
                 });
@@ -336,52 +288,37 @@ define(function() {
 
                 $rp.slideDown(1500);
                 
-                $p1.fadeIn(500, function() {
+                $p1.fadeIn(800, function() {
                     $p3.fadeIn(2000);
-                    $p2.fadeIn(1000, function() {
-                        $circle.fadeIn(2000);
-                        $circle.children("img").animate({
-                            r: 135
-                        }, {
-                            step: function(now, fx) {
-                                $(this).css('-webkit-transform', 'rotate(' + now + 'deg)');
-                                $(this).css('-moz-transform', 'rotate(' + now + 'deg)');
-                                $(this).css('-ms-transform', 'rotate(' + now + 'deg)');
-                                $(this).css('-o-transform', 'rotate(' + now + 'deg)');
-                                $(this).css('transform', 'rotate(' + now + 'deg)');
-                            },
-                            duration: 960,
-                            complete: function() {
-                                $(this).animate({
-                                    r: -45
-                                }, {
-                                    step: function(now, fx) {
-                                        $(this).css('-webkit-transform', 'rotate(' + now + 'deg)');
-                                        $(this).css('-moz-transform', 'rotate(' + now + 'deg)');
-                                        $(this).css('-ms-transform', 'rotate(' + now + 'deg)');
-                                        $(this).css('-o-transform', 'rotate(' + now + 'deg)');
-                                        $(this).css('transform', 'rotate(' + now + 'deg)');
-                                    },
-                                    duration: 1280,
-                                    complete: function() {
-                                        $arrow.slideDown(500);
-                                        $(this).animate({
-                                            r: 0
-                                        }, {
-                                            step: function(now, fx) {
-                                                $(this).css('-webkit-transform', 'rotate(' + now + 'deg)');
-                                                $(this).css('-moz-transform', 'rotate(' + now + 'deg)');
-                                                $(this).css('-ms-transform', 'rotate(' + now + 'deg)');
-                                                $(this).css('-o-transform', 'rotate(' + now + 'deg)');
-                                                $(this).css('transform', 'rotate(' + now + 'deg)');
-                                            },
-                                            duration: 960
+                    $p2.fadeIn(1500);
+                    $circle.fadeIn(1500);
 
-                                        });
-                                    }
-                                });
-                            }
-                        });
+                    $circle.children("img").animate({
+                        r: 135
+                    }, {
+                        step: function(now, fx) {
+                            $(this).css('-webkit-transform', 'rotate(' + now + 'deg)');
+                            $(this).css('-moz-transform', 'rotate(' + now + 'deg)');
+                            $(this).css('-ms-transform', 'rotate(' + now + 'deg)');
+                            $(this).css('-o-transform', 'rotate(' + now + 'deg)');
+                            $(this).css('transform', 'rotate(' + now + 'deg)');
+                        },
+                        duration: 800,
+                        complete: function() {
+                            $arrow.slideDown(1000);
+                            $(this).animate({
+                                r: 0
+                            }, {
+                                step: function(now, fx) {
+                                    $(this).css('-webkit-transform', 'rotate(' + now + 'deg)');
+                                    $(this).css('-moz-transform', 'rotate(' + now + 'deg)');
+                                    $(this).css('-ms-transform', 'rotate(' + now + 'deg)');
+                                    $(this).css('-o-transform', 'rotate(' + now + 'deg)');
+                                    $(this).css('transform', 'rotate(' + now + 'deg)');
+                                },
+                                duration: 1000
+                            });
+                        }
                     });
 
                 });
@@ -436,7 +373,7 @@ define(function() {
                         }
                     },
                     complete: function() {
-                        $arrow.slideDown(500);
+                        $arrow.slideDown(1000);
                     }
                 });
 
