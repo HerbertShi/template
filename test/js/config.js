@@ -155,9 +155,8 @@ define(function() {
                     $rp = $obj.find(".rp"),
                     $arrow = $obj.find(".arrow");
 
-                $rp.slideDown(1500);
-
                 $p1.fadeIn(800, function() {
+                    $rp.slideDown(2500);
                     $p3.fadeIn(2000);
                     $p2.fadeIn(1500);
                     $circle.fadeIn(1500);
@@ -220,10 +219,9 @@ define(function() {
                     $p3 = $obj.find(".p3"),
                     $rp = $obj.find(".rp"),
                     $arrow = $obj.find(".arrow");
-
-                $rp.slideDown(1500);
                 
                 $p1.fadeIn(800, function() {
+                    $rp.slideDown(2500);
                     $p3.fadeIn(2000);
                     $p2.fadeIn(1500);
                     $circle.fadeIn(1500);
@@ -285,10 +283,9 @@ define(function() {
                     $p3 = $obj.find(".p3"),
                     $rp = $obj.find(".rp"),
                     $arrow = $obj.find(".arrow");
-
-                $rp.slideDown(1500);
                 
                 $p1.fadeIn(800, function() {
+                    $rp.slideDown(2500);
                     $p3.fadeIn(2000);
                     $p2.fadeIn(1500);
                     $circle.fadeIn(1500);
