@@ -13,14 +13,14 @@ if(isset($_GET['page'])){
 require_once('config.php');
 $con = mysql_connect($db_host,$db_users,$db_pass);
 mysql_select_db($db_name, $con);
-mysql_query("SET CHARACTER SET UTF8");
-$res  = mysql_query('select * from users',$con);
+mysql_query("SET NAMES UTF8");
+$res  = mysql_query('select * from members',$con);
 $count = mysql_num_rows($res);       
 
 $page_size = 20;                        
 $all_page = ceil($count/$page_size);   
 $start = ($page-1)*$page_size;          
-$sql = "select * from users limit $start, $page_size";        
+$sql = "select * from members limit $start, $page_size";        
 $res = mysql_query($sql,$con); 
 mysql_close($con);
 ?>

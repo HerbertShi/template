@@ -16,9 +16,9 @@ if ($mobile && !preg_match($pattern,$mobile)){
 require_once('config.php');
 $con = mysql_connect($db_host,$db_users,$db_pass);
 mysql_select_db($db_name, $con);
-mysql_query("SET CHARACTER SET UTF8"); 
+mysql_query("SET NAMES UTF8"); 
 
-$result  = mysql_query("select mobile from users where mobile='".$mobile."'",$con);
+$result  = mysql_query("select mobile from members where mobile='".$mobile."'",$con);
 $have_one = mysql_num_rows($result);
 if($have_one){
 	die('手机号码已被注册!');
@@ -31,7 +31,7 @@ if($action == 'register'){
 	}
 	 
 	$now = time();
-	$res  = mysql_query("insert into users(name,mobile,add_time)values('".$name."','".$mobile."',".$now.")",$con);
+	$res  = mysql_query("insert into members(name,mobile,add_time)values('".$name."','".$mobile."',".$now.")",$con);
 	mysql_close($con);
 	if($res){
 		die('恭喜，您已报名成功!');

@@ -1,4 +1,66 @@
 define(function() {
+    var utilBeforeLoad = function(e) {
+        var $obj = $("#" + e.name),
+            $circle = $obj.find(".circle"),
+            $p1 = $obj.find(".p1"),
+            $p2 = $obj.find(".p2"),
+            $p3 = $obj.find(".p3"),
+            $rp = $obj.find(".rp"),
+            $arrow = $obj.find(".arrow"),
+            $ask = $obj.find(".ask");
+
+        $arrow.hide();
+        $rp.hide();
+        $p1.hide();
+        $p2.hide();
+        $p3.hide();
+        $circle.hide();
+        $ask.hide();
+    }
+
+    var utilAfterLoad = function(e) {
+        var $obj = $("#" + e.name),
+            $circle = $obj.find(".circle"),
+            $p1 = $obj.find(".p1"),
+            $p2 = $obj.find(".p2"),
+            $p3 = $obj.find(".p3"),
+            $rp = $obj.find(".rp"),
+            $arrow = $obj.find(".arrow"),
+            $ask = $obj.find(".ask");
+
+        $p1.fadeIn(400, function() {
+            $rp.slideDown(800);
+            $p3.fadeIn(400);
+            $p2.fadeIn(500);
+            $circle.fadeIn(500);
+
+            $circle.children("img").animate({
+                r: 135
+            }, {
+                step: function(now, fx) {
+                    $(this).css('-webkit-transform', 'rotate(' + now + 'deg)');
+                    $(this).css('-moz-transform', 'rotate(' + now + 'deg)');
+                    $(this).css('-ms-transform', 'rotate(' + now + 'deg)');
+                    $(this).css('-o-transform', 'rotate(' + now + 'deg)');
+                    $(this).css('transform', 'rotate(' + now + 'deg)');
+                },
+                duration: 500,
+                complete: function() {
+                    $arrow.slideDown(400);
+                    $ask.fadeIn(500);
+                    $(this).css({
+                        "-webkit-animation": 'myspinner 2.5s infinite linear',
+                        "-moz-animation": 'myspinner 2.5s infinite linear',
+                        "-o-animation": 'myspinner 2.5s infinite linear',
+                        "animation": 'myspinner 2.5s infinite linear'
+                    });
+                }
+            });
+
+        });
+
+    }
+
     var config = {
         page: [{
             name: "home",
@@ -43,10 +105,10 @@ define(function() {
 
                 $circle.animate({
                     "left": "60%"
-                }, 960, function() {
+                }, 500, function() {
                     $(this).animate({
                         "left": "50%"
-                    }, 1280);
+                    }, 800);
                 });
 
                 $circle.children("img").animate({
@@ -59,19 +121,13 @@ define(function() {
                         $(this).css('-o-transform', 'rotate(' + now + 'deg)');
                         $(this).css('transform', 'rotate(' + now + 'deg)');
                     },
-                    duration: 960,
+                    duration: 500,
                     complete: function() {
-                        $(this).animate({
-                            r: 0
-                        }, {
-                            step: function(now, fx) {
-                                $(this).css('-webkit-transform', 'rotate(' + now + 'deg)');
-                                $(this).css('-moz-transform', 'rotate(' + now + 'deg)');
-                                $(this).css('-ms-transform', 'rotate(' + now + 'deg)');
-                                $(this).css('-o-transform', 'rotate(' + now + 'deg)');
-                                $(this).css('transform', 'rotate(' + now + 'deg)');
-                            },
-                            duration: 1280
+                        $(this).css({
+                            "-webkit-animation": 'myspinner 2.5s infinite linear',
+                            "-moz-animation": 'myspinner 2.5s infinite linear',
+                            "-o-animation": 'myspinner 2.5s infinite linear',
+                            "animation": 'myspinner 2.5s infinite linear'
                         });
                     }
                 });
@@ -80,15 +136,15 @@ define(function() {
                     "left": "28%",
                     "top": "16%",
                     "opacity": "0.8"
-                }, 1200, function() {
+                }, 800, function() {
                     $(this).animate({
                         "left": "20%",
                         "opacity": "0.5"
-                    }, 800, function() {
+                    }, 500, function() {
                         $(this).animate({
                             "left": "23%",
                             "opacity": "1"
-                        }, 500);
+                        }, 400);
                     });
                 });
 
@@ -96,16 +152,16 @@ define(function() {
                     "right": "29%",
                     "top": "25%",
                     "opacity": "0.8"
-                }, 1200, function() {
+                }, 800, function() {
                     $(this).animate({
                         "right": "20%",
                         "opacity": "0.5"
-                    }, 800, function() {
+                    }, 500, function() {
                         $(this).animate({
                             "right": "24%",
                             "opacity": "1"
-                        }, 500, function() {
-                            $arrow.slideDown(1000);
+                        }, 400, function() {
+                            $arrow.slideDown(400);
                         });
                     });
                 });
@@ -114,7 +170,7 @@ define(function() {
                     "left": "0%",
                     "opacity": "1"
                 }, {
-                    duration: 3000,
+                    duration: 1500,
                     step: function(now, zb) {
                         if (zb.prop == "opacity") {
                             var t = parseInt($(this).css("bottom").split("px")[0]);
@@ -131,194 +187,28 @@ define(function() {
             name: "area",
             url: "area.html",
             beforeLoad: function() {
-                var $obj = $("#" + this.name),
-                    $circle = $obj.find(".circle"),
-                    $p1 = $obj.find(".p1"),
-                    $p2 = $obj.find(".p2"),
-                    $p3 = $obj.find(".p3"),
-                    $rp = $obj.find(".rp"),
-                    $arrow = $obj.find(".arrow");
-
-                $arrow.hide();
-                $rp.hide();
-                $p1.hide();
-                $p2.hide();
-                $p3.hide();
-                $circle.hide();
+                utilBeforeLoad(this);
             },
             afterLoad: function() {
-                var $obj = $("#" + this.name),
-                    $circle = $obj.find(".circle"),
-                    $p1 = $obj.find(".p1"),
-                    $p2 = $obj.find(".p2"),
-                    $p3 = $obj.find(".p3"),
-                    $rp = $obj.find(".rp"),
-                    $arrow = $obj.find(".arrow");
-
-                $p1.fadeIn(800, function() {
-                    $rp.slideDown(2500);
-                    $p3.fadeIn(2000);
-                    $p2.fadeIn(1500);
-                    $circle.fadeIn(1500);
-
-                    $circle.children("img").animate({
-                        r: 135
-                    }, {
-                        step: function(now, fx) {
-                            $(this).css('-webkit-transform', 'rotate(' + now + 'deg)');
-                            $(this).css('-moz-transform', 'rotate(' + now + 'deg)');
-                            $(this).css('-ms-transform', 'rotate(' + now + 'deg)');
-                            $(this).css('-o-transform', 'rotate(' + now + 'deg)');
-                            $(this).css('transform', 'rotate(' + now + 'deg)');
-                        },
-                        duration: 800,
-                        complete: function() {
-                            $arrow.slideDown(1000);
-                            $(this).animate({
-                                r: 0
-                            }, {
-                                step: function(now, fx) {
-                                    $(this).css('-webkit-transform', 'rotate(' + now + 'deg)');
-                                    $(this).css('-moz-transform', 'rotate(' + now + 'deg)');
-                                    $(this).css('-ms-transform', 'rotate(' + now + 'deg)');
-                                    $(this).css('-o-transform', 'rotate(' + now + 'deg)');
-                                    $(this).css('transform', 'rotate(' + now + 'deg)');
-                                },
-                                duration: 1000
-                            });
-                        }
-                    });
-
-                });
-
+                utilAfterLoad(this);
             }
         }, {
             name: "fame",
             url: "fame.html",
             beforeLoad: function() {
-                var $obj = $("#" + this.name),
-                    $circle = $obj.find(".circle"),
-                    $p1 = $obj.find(".p1"),
-                    $p2 = $obj.find(".p2"),
-                    $p3 = $obj.find(".p3"),
-                    $rp = $obj.find(".rp"),
-                    $arrow = $obj.find(".arrow");
-
-                $arrow.hide();
-                $rp.hide();
-                $p1.hide();
-                $p2.hide();
-                $p3.hide();
-                $circle.hide();
+                utilBeforeLoad(this);
             },
             afterLoad: function() {
-                var $obj = $("#" + this.name),
-                    $circle = $obj.find(".circle"),
-                    $p1 = $obj.find(".p1"),
-                    $p2 = $obj.find(".p2"),
-                    $p3 = $obj.find(".p3"),
-                    $rp = $obj.find(".rp"),
-                    $arrow = $obj.find(".arrow");
-                
-                $p1.fadeIn(800, function() {
-                    $rp.slideDown(2500);
-                    $p3.fadeIn(2000);
-                    $p2.fadeIn(1500);
-                    $circle.fadeIn(1500);
-
-                    $circle.children("img").animate({
-                        r: 135
-                    }, {
-                        step: function(now, fx) {
-                            $(this).css('-webkit-transform', 'rotate(' + now + 'deg)');
-                            $(this).css('-moz-transform', 'rotate(' + now + 'deg)');
-                            $(this).css('-ms-transform', 'rotate(' + now + 'deg)');
-                            $(this).css('-o-transform', 'rotate(' + now + 'deg)');
-                            $(this).css('transform', 'rotate(' + now + 'deg)');
-                        },
-                        duration: 800,
-                        complete: function() {
-                            $arrow.slideDown(1000);
-                            $(this).animate({
-                                r: 0
-                            }, {
-                                step: function(now, fx) {
-                                    $(this).css('-webkit-transform', 'rotate(' + now + 'deg)');
-                                    $(this).css('-moz-transform', 'rotate(' + now + 'deg)');
-                                    $(this).css('-ms-transform', 'rotate(' + now + 'deg)');
-                                    $(this).css('-o-transform', 'rotate(' + now + 'deg)');
-                                    $(this).css('transform', 'rotate(' + now + 'deg)');
-                                },
-                                duration: 1000
-                            });
-                        }
-                    });
-
-                });
+                utilAfterLoad(this);
             }
         }, {
             name: "family",
             url: "family.html",
             beforeLoad: function() {
-                var $obj = $("#" + this.name),
-                    $circle = $obj.find(".circle"),
-                    $p1 = $obj.find(".p1"),
-                    $p2 = $obj.find(".p2"),
-                    $p3 = $obj.find(".p3"),
-                    $rp = $obj.find(".rp"),
-                    $arrow = $obj.find(".arrow");
-
-                $arrow.hide();
-                $rp.hide();
-                $p1.hide();
-                $p2.hide();
-                $p3.hide();
-                $circle.hide();
+                utilBeforeLoad(this);
             },
             afterLoad: function() {
-                var $obj = $("#" + this.name),
-                    $circle = $obj.find(".circle"),
-                    $p1 = $obj.find(".p1"),
-                    $p2 = $obj.find(".p2"),
-                    $p3 = $obj.find(".p3"),
-                    $rp = $obj.find(".rp"),
-                    $arrow = $obj.find(".arrow");
-                
-                $p1.fadeIn(800, function() {
-                    $rp.slideDown(2500);
-                    $p3.fadeIn(2000);
-                    $p2.fadeIn(1500);
-                    $circle.fadeIn(1500);
-
-                    $circle.children("img").animate({
-                        r: 135
-                    }, {
-                        step: function(now, fx) {
-                            $(this).css('-webkit-transform', 'rotate(' + now + 'deg)');
-                            $(this).css('-moz-transform', 'rotate(' + now + 'deg)');
-                            $(this).css('-ms-transform', 'rotate(' + now + 'deg)');
-                            $(this).css('-o-transform', 'rotate(' + now + 'deg)');
-                            $(this).css('transform', 'rotate(' + now + 'deg)');
-                        },
-                        duration: 800,
-                        complete: function() {
-                            $arrow.slideDown(1000);
-                            $(this).animate({
-                                r: 0
-                            }, {
-                                step: function(now, fx) {
-                                    $(this).css('-webkit-transform', 'rotate(' + now + 'deg)');
-                                    $(this).css('-moz-transform', 'rotate(' + now + 'deg)');
-                                    $(this).css('-ms-transform', 'rotate(' + now + 'deg)');
-                                    $(this).css('-o-transform', 'rotate(' + now + 'deg)');
-                                    $(this).css('transform', 'rotate(' + now + 'deg)');
-                                },
-                                duration: 1000
-                            });
-                        }
-                    });
-
-                });
+                utilAfterLoad(this);
             }
         }, {
             name: "ma",
@@ -350,15 +240,15 @@ define(function() {
                     $arrow = $obj.find(".arrow"),
                     $ma = $obj.find(".ma");
 
-                $p1.fadeIn(1500, function() {
-                    $p2.fadeIn(1500);
+                $p1.fadeIn(800, function() {
+                    $p2.fadeIn(800);
                 });
 
                 $ma.animate({
                     "left": "0%",
                     "opacity": "1"
                 }, {
-                    duration: 3000,
+                    duration: 1500,
                     step: function(now, zb) {
                         if (zb.prop == "opacity") {
                             var t = parseInt($(this).css("bottom").split("px")[0]);
@@ -370,7 +260,7 @@ define(function() {
                         }
                     },
                     complete: function() {
-                        $arrow.slideDown(1000);
+                        $arrow.slideDown(400);
                     }
                 });
 
@@ -395,9 +285,9 @@ define(function() {
                     $title = $obj.find(".title"),
                     $news = $obj.find(".news");
 
-                $logo.fadeIn(500,function(){
-                    $title.fadeIn(500,function(){
-                        $news.slideDown(500);
+                $logo.fadeIn(400, function() {
+                    $title.fadeIn(400, function() {
+                        $news.slideDown(400);
                     });
                 });
             }
