@@ -40,6 +40,13 @@ requirejs(['jquery', 'config', 'swipe', 'jquery-ui'], function($, Config) {
 
     $(document).on("click", ".nextPage", function() {
         loadPage("up");
+
+    });
+
+    $(document).on("touchStart", function() {
+        if($("#audio")[0].currentTime<=0){
+            $("#audio")[0].play();
+        }
     });
 });
 

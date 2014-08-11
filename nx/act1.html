@@ -57,6 +57,8 @@
                 if(data == "1"){
                     //showMessage("提交成功！");
                     loadPage("up");
+                    $("#st_name").val($("#ad_name").val());
+                    $("#st_phone").val($("#ad_phone").val());
                 }else{
                     showMessage("提交失败！");
                 }
