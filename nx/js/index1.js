@@ -5,7 +5,7 @@ requirejs.config({
         'css': 'css.min',
         'swipe': 'jquery.touchSwipe.min',
         'jquery-ui': 'jquery-ui/jquery-ui-1.10.4.custom.min',
-        'config': 'config'
+        'config': 'config1'
     },
     shim: {
         'swipe': {
