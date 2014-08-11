@@ -1,0 +1,79 @@
+<div class="box act1">
+    <div class="content">
+        <div>
+        	<div class="title"><img src="images/title1.png" /></div>
+        	<textarea id="ad_ad" class="height1"></textarea>
+        	<div class="text"><img src="images/text1.png" /></div>
+        </div>
+        <div>
+        	<div class="title"><img src="images/title2.png" /><span class="right"><img src="images/word200.png" /></span></div>
+        	<textarea id="ad_meaning" class="height2"></textarea>
+        	<div class="text"></div>
+         </div>
+         <div style="margin-top:-8%;">
+        	<div class="title"><img src="images/title3.png" /></div>
+        <dl>
+        	<dt><img src="images/name.png" /></dt>
+        	<dd><input id="ad_name" type="text" /></dd>
+        </dl>
+         <div class="clear">&nbsp;</div>
+        <dl>
+        	<dt><img src="images/tel.png" /></dt>
+        	<dd><input id="ad_phone" type="text" /></dd>
+        </dl>
+        <div class="clear">&nbsp;</div>
+        </div>
+        <div class="btn align_center"><a id="ad_submit" href="javascript:void(0);" ><img src="images/btn.png" /></a></div>
+        <div class="alex"><div class="bg">&nbsp;</div><span>请输入姓名</span></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var messageTimeout;
+    function showMessage(message) {
+        clearTimeout(messageTimeout);
+        $('.alex span').html(message);
+        $('.alex').stop(true, false).fadeIn(500, function() {
+            messageTimeout = setTimeout(function() {
+                $('.alex').fadeOut(1000, function() {
+                    $(this).find("span").html("");
+                });
+            }, 2000);
+        });
+    }
+    $("#ad_submit").on("click", function() {
+        function check() {
+            var result = "";
+            if ($.trim($("#ad_name").val()) == "") {
+                result = '姓名不能为空!';
+                return result;
+            }
+
+            var reg = /^0?1[358]\d{9}$/;
+            if (!reg.test($.trim($("#ad_phone").val()))) {
+                result = '手机格式:15866668888!';
+                return result;
+            }
+
+
+        }
+
+        var reg = check();
+        if (reg) {
+            showMessage(reg);
+        } else {
+            $.post("controller/adSubmit.php", {
+                advertising: encodeURI($("#ad_ad").val()),
+                meaning: encodeURI($("#ad_meaning").val()),
+                name: encodeURI($("#ad_name").val()),
+                phone: $("#ad_phone").val()
+            }, function(data) {
+                if(data == "1"){
+                    showMessage("提交成功！");
+                }else{
+                    showMessage("提交失败！");
+                }
+            });
+        }
+    });
+</script>

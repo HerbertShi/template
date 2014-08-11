@@ -1,0 +1,74 @@
+<div class="box act1">
+    <div class="content">
+        <div>
+        	<div class="title"><img src="images/title4.png" /><span class="right"><img src="images/word500.png" /></span></div>
+        	<textarea id="st_story" class="height3"></textarea>
+        </div>
+      
+         <div >
+        	<div class="title"><img src="images/title3.png" /></div>
+        <dl>
+        	<dt><img src="images/name.png" /></dt>
+        	<dd><input id="st_name" type="text" /></dd>
+        </dl>
+         <div class="clear">&nbsp;</div>
+        <dl>
+        	<dt><img src="images/tel.png" /></dt>
+        	<dd><input id="st_phone" type="text" /></dd>
+        </dl>
+        <div class="clear">&nbsp;</div>
+        </div>
+        <div class="btn align_center"><a id="st_submit" href="javascript:void(0);" ><img src="images/btn.png" /></a></div>
+        <div class="alex"><div class="bg">&nbsp;</div><span>请输入姓名</span></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var messageTimeout;
+    function showMessage(message) {
+        clearTimeout(messageTimeout);
+        $('.alex span').html(message);
+        $('.alex').stop(true, false).fadeIn(500, function() {
+            messageTimeout = setTimeout(function() {
+                $('.alex').fadeOut(1000, function() {
+                    $(this).find("span").html("");
+                });
+            }, 2000);
+        });
+    }
+
+    $("#st_submit").on("click", function() {
+        function check() {
+            var result = "";
+            if ($.trim($("#st_name").val()) == "") {
+                result = '姓名不能为空!';
+                return result;
+            }
+
+            var reg = /^0?1[358]\d{9}$/;
+            if (!reg.test($.trim($("#st_phone").val()))) {
+                result = '手机格式:15866668888!';
+                return result;
+            }
+
+
+        }
+        
+        var reg = check();
+        if (reg) {
+            showMessage(reg);
+        } else {
+            $.post("controller/storySubmit.php", {
+                story: encodeURI($("#st_story").val()),
+                name: encodeURI($("#st_name").val()),
+                phone: $("#st_phone").val()
+            }, function(data) {
+                if(data == "1"){
+                    showMessage("提交成功！");
+                }else{
+                    showMessage("提交失败！");
+                }
+            });
+        }
+    });
+</script>
