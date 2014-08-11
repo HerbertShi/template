@@ -4,9 +4,30 @@ define(function() {
             name: "home",
             url: "home.html",
             beforeLoad: function() {
+                var obj = $("#"+this.name),
+                    l_label = obj.find(".l_label"),
+                    r_label = obj.find(".r_label");
 
+                l_label.css({
+                    marginLeft:"-150%"
+                });
+
+                r_label.css({
+                    marginLeft:"50%"
+                });
             },
             afterLoad: function() {
+                var obj = $("#"+this.name),
+                    l_label = obj.find(".l_label"),
+                    r_label = obj.find(".r_label");
+
+                l_label.animate({"marginLeft":"-45%"},800,function(){
+                    $(this).animate({"marginLeft":"-50%"},400);
+                });
+
+                r_label.animate({"marginLeft":"-55%"},800,function(){
+                    $(this).animate({"marginLeft":"-50%"},400);
+                });
             }
         },{
             name: "join",
