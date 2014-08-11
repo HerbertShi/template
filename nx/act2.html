@@ -24,19 +24,6 @@
 </div>
 
 <script type="text/javascript">
-    var messageTimeout;
-    function showMessage(message) {
-        clearTimeout(messageTimeout);
-        $('.alex span').html(message);
-        $('.alex').stop(true, false).fadeIn(500, function() {
-            messageTimeout = setTimeout(function() {
-                $('.alex').fadeOut(1000, function() {
-                    $(this).find("span").html("");
-                });
-            }, 2000);
-        });
-    }
-
     $("#st_submit").on("click", function() {
         function check() {
             var result = "";
@@ -64,7 +51,8 @@
                 phone: $("#st_phone").val()
             }, function(data) {
                 if(data == "1"){
-                    showMessage("提交成功！");
+                    //showMessage("提交成功！");
+                    loadPage("up");
                 }else{
                     showMessage("提交失败！");
                 }
