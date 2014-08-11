@@ -10,7 +10,7 @@
 	$con = mysql_connect($db_host,$db_users,$db_pass);
 	mysql_select_db($db_name, $con);
 	mysql_query("SET NAMES UTF8");
-	$sql = "insert into nx_ad values (0,'".$advertising.
+	$sql = "insert into nx_ad (advertising,meaning,name,phone) values ('".$advertising.
 	"','".$meaning.
 	"','".$name.
 	"','".$phone.

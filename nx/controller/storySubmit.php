@@ -9,7 +9,7 @@
 	$con = mysql_connect($db_host,$db_users,$db_pass);
 	mysql_select_db($db_name, $con);
 	mysql_query("SET NAMES UTF8");
-	$sql = "insert into nx_story values (0,'".$story.
+	$sql = "insert into nx_story (story,name,phone) values ('".$story.
 	"','".$name.
 	"','".$phone.
 	"' ) ";

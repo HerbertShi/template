@@ -6,9 +6,9 @@
 	width: 100%;
 	height: 100%;
 	overflow: hidden;
-	background-size: 100% 100%;
-	background-color:#BE0D12;
+	background-size: 100% auto;
 	background-image:url(../images/ad/bg.png);
+	background-repeat:no-repeat;
 }
 .box .content {
 	width: 85%;
@@ -41,17 +41,70 @@
 	width:35%;
 	text-align:right;	
 }
+.box input{
+	height:30px;
+	line-height:30px;	
+	vertical-align:middle;
+}
+
+.btn {
+	position: relative;
+	width:40%;
+	margin:0px auto;
+	margin-top:2em;
+}
+.home{
+	background-image:url(../images/ad/home_bg.png);	
+}
+.home .content div{
+	left:50%;
+	position:absolute;
+}
+.home .btn{
+	width:60%;		
+	bottom:5%;	
+	margin-left:-30%;
+}
+.home .s_title{
+	width:70%;
+	top:18%;
+	margin-left:-35%;
+}
+.home .b_title{
+	width:80%;
+	top:26%;
+	margin-left:-40%;	
+}
+.home .logo{
+	width:70%;
+	top:5%;
+	margin-left:-35%;
+}
+.home .l_label{
+	width:100%;
+	top:60%;
+	margin-left:-50%;	
+}
+.home .r_label{
+	width:100%;
+	top:64%;
+	margin-left:-50%;	
+}
+.ty .content{
+	width:95%;
+	padding:0px;
+	
+}
+.ty .btn{
+	margin-top:0px;	
+}
+
 .act1 dt,.act1 dd{
 	float:left;	
 	height:30px;
 	line-height:30px;
 	margin:0.1em 0px;
 	
-}
-.box input{
-	height:30px;
-	line-height:30px;	
-	vertical-align:middle;
 }
 .act1 dt{
 	width:30%;
@@ -64,12 +117,7 @@
 	width:70%;	
 	float:right;	
 }
-.btn {
-	position: relative;
-	width:40%;
-	margin:0px auto;
-	margin-top:2em;
-}
+
 
 .p {
 	position: absolute;
@@ -80,6 +128,7 @@
 .text {
 	margin-bottom:1em;
 }
+
 
 .alex {
 	position: absolute;
@@ -150,13 +199,13 @@ input:focus, textarea:focus, button:focus, select:focus, .popup input[type=text]
 	color: #299fd4;
 }
 .height1{
-	height:50px;		
+	height:40px;		
 }
 .height2{
-	height:80px;	
+	height:60px;	
 }
 .height3{
-	height:200px;	
+	height:160px;	
 }
 .fleft,.left {
 	float: left;
