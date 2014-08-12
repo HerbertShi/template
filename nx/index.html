@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html>
 <head>
 	<meta charset="utf-8">
@@ -7,6 +7,23 @@
 	<meta name="apple-mobile-web-app-status-bar-style" content="black">
 	<title>参加“泽州农商行品牌广告语”征集，赢取迪拜奢华六日游！</title>
     <link rel="stylesheet" href="css/style.css" />
+	<style type="text/css">
+	#audioControl {
+		position: absolute;
+		z-index: 99999;
+		top: 10px;
+		right: 10px;
+		display: block;
+		width: 18px;
+		height: 15px;
+		background: url('images/player.png') no-repeat;
+		cursor: pointer;
+		background-position: -59px -182px;
+	}
+	#audioControl.active {
+		background-position: -89px -182px;
+	}
+</style>
 	<script type="text/javascript" src="js/require.js" data-main="js/index" ></script>
 <!--<script>
         var imgUrl = 'http://nt.yc5u.com/dc/images/loading.png';
@@ -65,6 +82,7 @@
         </script> -->
 </head>
 <body style="overflow:hidden">
+<a id="audioControl"  href="javascript:play();" class="active"> &nbsp; </a>
     <audio id="audio" preload="preload" autoplay="autoplay" loop="loop">
         <source src="音乐F.mp3" type="audio/mp3">
     </audio>

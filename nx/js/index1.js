@@ -180,3 +180,12 @@ function showMessage(message) {
         }, 1000);
     });
 }
+
+function play(){
+    $("#audioControl").toggleClass("active");
+    if($("#audioControl").hasClass("active")){
+        $("#audio")[0].play();
+    }else{
+        $("#audio")[0].pause();
+    }
+}
