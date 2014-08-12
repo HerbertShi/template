@@ -22,11 +22,12 @@
         );
     }
 
-    $sql = "select count(id) from nx_ad ";
+    $sql = "select count(id) as n from nx_ad ";
     $res = mysql_query($sql,$con);
+    $count = mysql_fetch_array($res);
     $data = array(
         "table"=>$info,
-        "pager"=>mysql_fetch_array($res)[0]
+        "pager"=>$count["n"]
     );
 
     mysql_close($con);
