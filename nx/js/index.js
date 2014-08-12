@@ -25,7 +25,8 @@ requirejs(['jquery', 'config', 'swipe', 'jquery-ui'], function($, Config) {
                 "width": "100%",
                 "height": "100%",
                 "left": "0%",
-                "top": (100 * i) + "%"
+                "top": (i == 0 ? 0 :100) + "%",
+                "zIndex":999
             }).data(this).swipe({
                 swipe: function(event, direction, distance, duration, fingerCount) {
                     loadPage(direction,"handle");
@@ -41,6 +42,10 @@ requirejs(['jquery', 'config', 'swipe', 'jquery-ui'], function($, Config) {
     $(document).on("click", ".nextPage", function() {
         loadPage("up");
 
+    });
+
+    $(document).on("click", "input[type=text],textarea", function() {
+        loadPage("up","handle");
     });
 
     $(document).on("touchstart", function() {
@@ -72,12 +77,14 @@ function loadPage(direction,isHandle) {
                 }, 1000, function() {
                     $(this).animate({
                         "top": "-100%"
-                    }, 500);
+                    }, 500,function(){
+                        $(this).hide();
+                    });
                 });
             }
 
             comeAnimate = function() {
-                newObj.animate({
+                newObj.show().animate({
                     "top": "-5%"
                 }, 1000, function() {
                     data.afterLoad();
@@ -88,11 +95,11 @@ function loadPage(direction,isHandle) {
             }
         } else if (newObj.size() > 0 && newObj.html() && isHandle == "show") {
             goAnimate = function() {
-                oldObj.css({"top": "-100%"});
+                oldObj.css({"top": "-100%"}).hide();
             }
 
             comeAnimate = function() {
-                newObj.css({"top": "0%"});
+                newObj.show().css({"top": "0%"});
             }
         } else {
             oldObj.animate({
@@ -115,12 +122,14 @@ function loadPage(direction,isHandle) {
                 }, 1000, function() {
                     $(this).animate({
                         "top": "100%"
-                    }, 500);
+                    }, 500,function(){
+                        $(this).hide();
+                    });
                 });
             }
 
             comeAnimate = function() {
-                newObj.animate({
+                newObj.show().animate({
                     "top": "5%"
                 }, 1000, function() {
                     data.afterLoad();
@@ -157,7 +166,9 @@ function loadPage(direction,isHandle) {
 
     var nextObj = newObj.next("div[data-role='page']");
     if (nextObj.html() == "") {
-        nextObj.load(nextObj.data("url"));
+        nextObj.load(nextObj.data("url"),function(){
+            $(this).hide();
+        });
     }
 }
 

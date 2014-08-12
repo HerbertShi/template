@@ -25,7 +25,8 @@ requirejs(['jquery', 'config', 'swipe', 'jquery-ui'], function($, Config) {
                 "width": "100%",
                 "height": "100%",
                 "left": "0%",
-                "top": (100 * i) + "%"
+                "top": (i == 0 ? 0 :100) + "%",
+                "zIndex":999
             }).data(this).swipe({
                 swipe: function(event, direction, distance, duration, fingerCount) {
                     loadPage(direction,"handle");
@@ -41,6 +42,10 @@ requirejs(['jquery', 'config', 'swipe', 'jquery-ui'], function($, Config) {
     $(document).on("click", ".nextPage", function() {
         loadPage("up");
 
+    });
+
+    $(document).on("click", "input[type=text],textarea", function() {
+        loadPage("up","handle");
     });
 
     $(document).on("touchstart", function() {

@@ -67,7 +67,7 @@ requirejs(['jquery', 'config', 'swipe', 'jquery-ui'], function($, Config) {
                 "width": "100%",
                 "height": "100%",
                 "left": "0%",
-                "top": (100 * i) + "%"
+                "top": (i == 0 ? 0 : 100) + "%"
             }).data(this).swipe({
                 swipe: function(event, direction, distance, duration, fingerCount) {
                     loadPage(direction);
