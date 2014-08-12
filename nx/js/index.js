@@ -191,7 +191,9 @@ function play(){
     $("#audioControl").toggleClass("active");
     if($("#audioControl").hasClass("active")){
         $("#audio")[0].play();
+        $("#audioLabel").html("点击关闭音乐");
     }else{
         $("#audio")[0].pause();
+        $("#audioLabel").html("点击打开音乐");
     }
 }

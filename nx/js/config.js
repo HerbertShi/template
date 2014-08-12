@@ -5,6 +5,7 @@ define(function() {
             url: "home.html",
             beforeLoad: function() {
                 var obj = $("#"+this.name),
+                    b_title = obj.find(".b_title"),
                     l_label = obj.find(".l_label"),
                     r_label = obj.find(".r_label");
 
@@ -15,9 +16,12 @@ define(function() {
                 r_label.css({
                     marginLeft:"50%"
                 });
+
+                b_title.hide();
             },
             afterLoad: function() {
                 var obj = $("#"+this.name),
+                    b_title = obj.find(".b_title"),
                     l_label = obj.find(".l_label"),
                     r_label = obj.find(".r_label");
 
@@ -28,6 +32,8 @@ define(function() {
                 r_label.animate({"marginLeft":"-55%"},800,function(){
                     $(this).animate({"marginLeft":"-50%"},400);
                 });
+
+                b_title.fadeIn(1500);
             }
         },{
             name: "join",

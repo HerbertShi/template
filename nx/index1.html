@@ -23,11 +23,20 @@
 	#audioControl.active {
 		background-position: -89px -182px;
 	}
+
+	#audioLabel{
+		position: absolute;
+		z-index: 99999;
+		top: 10px;
+		right: 35px;
+		color: #666;
+		font-size: 80%;
+	}
 </style>
 	<script type="text/javascript" src="js/require.js" data-main="js/index1" ></script>
 </head>
 <body style="overflow:hidden">
-	<a id="audioControl"  href="javascript:play();" class="active"> &nbsp; </a>
+	<span id="audioLabel">点击关闭音乐</span><a id="audioControl"  href="javascript:play();" class="active"> &nbsp; </a>
     <audio id="audio" preload="preload" autoplay="autoplay" loop="loop">
         <source src="音乐F.mp3" type="audio/mp3">
     </audio>
