@@ -14,6 +14,6 @@
 	"','".$phone.
 	"' ) ";
 	$res = mysql_query($sql,$con); 
-	
+	mysql_close($con);
 	echo $res;
 ?>
