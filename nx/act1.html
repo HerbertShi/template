@@ -49,10 +49,10 @@
             showMessage(reg);
         } else {
             $.post("controller/adSubmit.php", {
-                advertising: encodeURI($("#ad_ad").val()),
-                meaning: encodeURI($("#ad_meaning").val()),
-                name: encodeURI($("#ad_name").val()),
-                phone: $("#ad_phone").val()
+                // advertising: encodeURI($("#ad_ad").val()),
+                // meaning: encodeURI($("#ad_meaning").val()),
+                // name: encodeURI($("#ad_name").val()),
+                // phone: $("#ad_phone").val()
             }, function(data) {
                 if(data == "1"){
                     //showMessage("提交成功！");
