@@ -65,7 +65,7 @@ function loadPage(direction,isHandle) {
 
     if (direction == "up") {
         oldObj = $("div[data-role='page'][data-index='" + (currentIndex - 1) + "']");
-        if (newObj.size() > 0 && newObj.html() && isHandle != "handle") {
+        if (newObj.size() > 0 && newObj.html() && !isHandle) {
             goAnimate = function() {
                 oldObj.animate({
                     "top": "-105%"
@@ -85,6 +85,14 @@ function loadPage(direction,isHandle) {
                         "top": "0%"
                     }, 500);
                 });
+            }
+        } else if (newObj.size() > 0 && newObj.html() && isHandle == "show") {
+            goAnimate = function() {
+                oldObj.css({"top": "-100%"});
+            }
+
+            comeAnimate = function() {
+                newObj.css({"top": "0%"});
             }
         } else {
             oldObj.animate({

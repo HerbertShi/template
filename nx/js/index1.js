@@ -86,6 +86,14 @@ function loadPage(direction,isHandle) {
                     }, 500);
                 });
             }
+        }else if (newObj.size() > 0 && newObj.html() && isHandle == "show") {
+            goAnimate = function() {
+                oldObj.css({"top": "-100%"});
+            }
+
+            comeAnimate = function() {
+                newObj.css({"top": "0%"});
+            }
         } else {
             oldObj.animate({
                 "top": "-5%"
