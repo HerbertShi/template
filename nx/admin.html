@@ -41,7 +41,7 @@
   function renderTable(data){
     $("#dataTable tbody").empty();
     $(data).map(function(i){
-      var d = new Date(this.createDate);
+      var d = new Date(this.createDate.replace(/-/g, "/"));
       var tr = $("<tr></tr>").append($("<td>"+(i+startIndex + 1)+"</td>"))
                              .append($("<td>"+this.name+"</td>"))
                              .append($("<td>"+this.phone+"</td>"))
