@@ -1,0 +1,71 @@
+﻿<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<title>参加“泽州农商行品牌广告语”征集，赢取迪拜奢华六日游！</title>
+    <link rel="stylesheet" href="css/style.css" />
+	<style type="text/css">
+	
+    </style>
+	<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="js/jquery.cookie.js"></script>
+
+    <script type="text/javascript">
+        function renderList(data){
+            $("#list").empty();
+            $(data).map(function(){
+                var item = $("<div></div>").data(this),
+                    input = $("<input name='voteInput' type='checkbox' value='" + this.id + "' />"),
+                    content = $("<span>" + this.advertising + "</span>");
+
+                $("#list").append(item.append(input).append(content));
+            });
+        }
+
+        $(function(){
+            $.post("controller/voteList.php",function(data){
+                data = eval('(' + data +')');
+                renderList(data);
+            });
+
+            $("#list").on("change","input[name=voteInput]",function(){
+                if ($("input[name=voteInput]:checked").size() > 3) {
+                    $(this).prop("checked",false);
+                }
+            });
+
+            $("#submit").click(function(){
+                if ($.cookie("voteList")) {
+                    alert("已经投过票");
+                } else {
+                    var _ids = "";
+                    $("#list input[name=voteInput]:checked").each(function() {
+                        _ids += "," + $(this).val();
+                    });
+                    $.post("controller/voteSubmit.php", {
+                        ids: _ids
+                    }, function(data) {
+                        if (data == "1") {
+                            $.cookie("voteList", _ids, {
+                                expires: 30
+                            });
+                            alert("投票成功");
+                        } else {
+
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+</head>
+<body style="overflow:hidden">
+    <div id="list">
+
+    </div>
+    <input id="submit" value="提交" type="button" />
+</body>
+</html>
