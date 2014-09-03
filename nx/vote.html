@@ -26,6 +26,25 @@
         }
 
         $(function(){
+            $("<div id='shadow'></div>").css({
+                "position": "absolute",
+                "zIndex": 10,
+                "height": $(window).height(),
+                "width": $(window).width(),
+                "top": 0,
+                "left": 0,
+                "backgroundColor": "#000",
+                "opacity": 0.3,
+                "display": "none"
+            }).appendTo($("body"));
+
+            $(document).ajaxStart(function(){
+                $("#shadow").show();
+            }).ajaxStop(function(){
+                $("#shadow").hide();
+            });
+
+
             $.post("controller/voteList.php",function(data){
                 data = eval('(' + data +')');
                 renderList(data);
@@ -63,7 +82,7 @@
     </script>
 </head>
 <body style="overflow:hidden">
-    <div id="list">
+    <div id="list" style="height:500px;overflow:auto;">
 
     </div>
     <input id="submit" value="提交" type="button" />
