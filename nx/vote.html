@@ -17,11 +17,41 @@
         function renderList(data){
             $("#list").empty();
             $(data).map(function(){
-                var item = $("<div></div>").data(this),
-                    input = $("<input name='voteInput' type='checkbox' value='" + this.id + "' />"),
+                var item = $("<div></div>").data(this).click(function(){
+                        var em = $(this).find("em");
+                        if ($(em).hasClass("active")) {
+                            $(em).removeClass("active");
+                            $(em).prev().prop("checked",false);
+                        }else if($("input[name=voteInput]:checked").size() < 3){
+                            $(em).addClass("active");
+                            $(em).prev().prop("checked",true);
+                        }else{
+                            showMessage("每个用户只能投3票");
+                        }
+                    }),
+                    input = $("<input name='voteInput' type='checkbox' value='" + this.id + "' />").css("display","none"),
+                    em = $("<em></em>").addClass("check_icon"),
                     content = $("<span>" + this.advertising + "</span>");
 
-                $("#list").append(item.append(input).append(content));
+                $("#list").append(item.append(input).append(em).append(content));
+                if ($.cookie("voteList")){
+                    em.hide();
+                }
+            });
+        }
+
+        var messageTimeout;
+
+        function showMessage(message) {
+            var $obj = $("body");
+            clearTimeout(messageTimeout);
+            $obj.find('.alex span').html(message);
+            $obj.find('.alex').stop(true, false).fadeIn(500, function() {
+                messageTimeout = setTimeout(function() {
+                    $obj.find('.alex').fadeOut(1000, function() {
+                        $(this).find("span").html("");
+                    });
+                }, 1000);
             });
         }
 
@@ -44,21 +74,26 @@
                 $("#shadow").hide();
             });
 
+            $("#title").load(function(){
+                $("#list").css("height",$(window).height() - $(".list").offset().top - $(".content").height() + $(this).height());
+            });
+
+            $(window).resize(function(){
+                $("#list").css("height",$(window).height() - $(".list").offset().top - $(".content").height() + $("#list").height());
+            });
 
             $.post("controller/voteList.php",function(data){
                 data = eval('(' + data +')');
                 renderList(data);
             });
 
-            $("#list").on("change","input[name=voteInput]",function(){
-                if ($("input[name=voteInput]:checked").size() > 3) {
-                    $(this).prop("checked",false);
-                }
-            });
+            if ($.cookie("voteList")){
+                 $("#submit").hide();
+            }
 
             $("#submit").click(function(){
                 if ($.cookie("voteList")) {
-                    alert("已经投过票");
+                    showMessage("已经投过票");
                 } else {
                     var _ids = "";
                     $("#list input[name=voteInput]:checked").each(function() {
@@ -71,7 +106,9 @@
                             $.cookie("voteList", _ids, {
                                 expires: 30
                             });
-                            alert("投票成功");
+                            showMessage("投票成功");
+                            $(".check_icon").hide();
+                            $("#submit").hide();
                         } else {
 
                         }
@@ -82,9 +119,15 @@
     </script>
 </head>
 <body style="overflow:hidden">
-    <div id="list" style="height:500px;overflow:auto;">
-
+    <div class="box vote">
+        <img id="title" src="images/vote_banner.png" />
+        <div class="content">
+            <div class="list" id="list" style="height:200px;overflow:auto;">
+            </div>
+            <div class="btn align_center"><a id="submit" href="javascript:void(0);" ><img src="images/btn.png" /></a></div>
+            <div class="extra align_center"><img src="images/vote_text.png" /></div>
+        </div>
     </div>
-    <input id="submit" value="提交" type="button" />
+    <div class="alex"><div class="bg">&nbsp;</div><span></span></div>
 </body>
 </html>
