@@ -34,9 +34,6 @@
                     content = $("<span>" + this.advertising + "</span>");
 
                 $("#list").append(item.append(input).append(em).append(content));
-                if ($.cookie("voteList")){
-                    em.hide();
-                }
             });
         }
 
@@ -53,6 +50,11 @@
                     });
                 }, 1000);
             });
+        }
+
+
+        if ($.cookie("voteList")){
+             location.href = "result.html"
         }
 
         $(function(){
@@ -87,10 +89,6 @@
                 renderList(data);
             });
 
-            if ($.cookie("voteList")){
-                 $("#submit").hide();
-            }
-
             $("#submit").click(function(){
                 if ($.cookie("voteList")) {
                     showMessage("已经投过票");
@@ -107,8 +105,9 @@
                                 expires: 30
                             });
                             showMessage("投票成功");
-                            $(".check_icon").hide();
-                            $("#submit").hide();
+                            // $(".check_icon").hide();
+                            // $("#submit").hide();
+                            location.href = "result.html"
                         } else {
 
                         }
